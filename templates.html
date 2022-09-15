@@ -1,0 +1,347 @@
+<!--
+    This file contains all modules to display on main web app.
+
+    These are merely templates to be copy and pasted.
+    Please do not edit without approval, this file will serve as
+        the base for UI implementation and design.
+
+    Use these in React methods to drop in desired modules when needed.
+    The id's will always match the designating commment that precedes 
+        the module for ease of access (not including parentheses).
+    However, depending on React's capabilites the id's may be useless.
+
+    Check if d-none is removed if implementation into app does not work, 
+        as some modules are switched to d-none on this page temporarily.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hey Coach</title>
+
+    <!-- Bootstrap css framework-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <!-- Navigation Linked (logged in)-->
+    <nav id="navigation-linked" class="navbar navbar-expand-md bg-dark navbar-dark py-3 sticky-top">
+        <div class="container">
+
+            <button class="navbar-toggler mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navmenu">
+
+                <a href="#index" class="navbar-brand text-primary my-2 my-md-0">Hey Coach</a>
+
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item ms-1 my-2 ms-md-5 my-md-0">
+                        <a href="#my-journal" class="nav-link text-info">
+                            <span class="d-none d-xl-block">My Journal</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                class="bi bi-journal-bookmark" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M6 8V1h1v6.117L8.743 6.07a.5.5 0 0 1 .514 0L11 7.117V1h1v7a.5.5 0 0 1-.757.429L9 7.083 6.757 8.43A.5.5 0 0 1 6 8z" />
+                                <path
+                                    d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z" />
+                                <path
+                                    d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z" />
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="nav-item ms-1 my-2 ms-md-5 my-md-0">
+                        <a href="#my-progress" class="nav-link text-info">
+                            <span class="d-none d-xl-block">My Progress</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                class="bi bi-graph-up" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M0 0h1v15h15v1H0V0Zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07Z" />
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="nav-item ms-1 my-2 ms-md-5 my-md-0">
+                        <a href="#my-account" class="nav-link text-info">
+                            <span class="d-none d-xl-block">My Account</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                class="bi bi-person-circle" viewBox="0 0 16 16">
+                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                <path fill-rule="evenodd"
+                                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- Navigation Unlinked (not logged in) -->
+    <nav id="navigation-unlinked" class="navbar navbar-expand-md bg-dark navbar-dark py-3">
+        <div class="container">
+            <a href="#index" class="navbar-brand text-primary my-2 my-md-0">Hey Coach</a>
+            <a href="#log-in" class="nav-link text-info">Log In</a>
+        </div>
+    </nav>
+
+    <!-- Main -->
+    <main id="main" class="bg-dark text-light d-none"></main>
+    <main id="displayed-main" class="bg-dark text-light">
+
+        <!-- Index -->
+        <div id="index">
+
+            <!-- Showcase -->
+            <section id="showcase" class="p-5 p-lg-0 pt-lg-5 text-center text-md-start">
+                <div class="container">
+                    <div class="d-md-flex align-items-center justify-content-between">
+                        <div>
+                            <h1>Try <span class="text-primary">Hey Coach
+                                </span> for free!</h1>
+                            <p class="lead my-4">
+                                We can help you tackle any fitness goal on the planet
+                                completely free of charge. Create your account today, and next
+                                time you have a question, <br> just say <span class="text-primary">Hey Coach</span>.
+                            </p>
+                            <button class="btn btn-primary btn-lg" type="button" data-bs-toggle="modal"
+                                data-bs-target="#account-registration">Create Account</button>
+                        </div>
+                        <img class="img-fluid w-50 d-none d-md-block" src="showcase.jpg" alt="showcasepicture">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Showcase2 -->
+            <section id="showcase2" class="bg-primary text-light py-5">
+                <div class="container">
+                    <div class="d-md-flex align-items-center text-center text-md-start">
+                        <h3 class="mb-3 mb-md-0">Already have an account?</h3>
+                        <button type="button" class="btn btn-light btn-sm m-3">Log in here</button>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+
+        <!-- Calorie Finder -->
+        <section id="calorie-finder">
+            <div class="container">
+                <div class="row pt-5">
+                    <div class="col-12">
+                        <h1>Calorie Finder</h1>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Enter food item"
+                                aria-label="Enter food item" aria-describedby="button-addon2">
+                            <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Food Item -->
+        <section id="food-item">
+            <div class="container">
+                <div class="row py-3">
+                    <div class="col-sm-6 col-lg-3 py-3">
+                        <div class="card text-dark">
+                            <img src="https://picsum.photos/200" class="img card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Food Item</h5>
+                                <h6>Macros</h6>
+                                <ul>
+                                    <li>Protein: 30g</li>
+                                    <li>Carbs: 40g</li>
+                                    <li>Fats: 20g</li>
+                                </ul>
+                                <a href="#" class="btn btn-primary">Add this food</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3 py-3">
+                        <div class="card text-dark">
+                            <img src="https://picsum.photos/200" class="img card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Food Item</h5>
+                                <h6>Macros</h6>
+                                <ul>
+                                    <li>Protein: 30g</li>
+                                    <li>Carbs: 40g</li>
+                                    <li>Fats: 20g</li>
+                                </ul>
+                                <a href="#" class="btn btn-primary">Add this food</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3 py-3">
+                        <div class="card text-dark">
+                            <img src="https://picsum.photos/200" class="img card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Food Item</h5>
+                                <h6>Macros</h6>
+                                <ul>
+                                    <li>Protein: 30g</li>
+                                    <li>Carbs: 40g</li>
+                                    <li>Fats: 20g</li>
+                                </ul>
+                                <a href="#" class="btn btn-primary">Add this food</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3 py-3">
+                        <div class="card text-dark">
+                            <img src="https://picsum.photos/200" class="img card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Food Item</h5>
+                                <h6>Macros</h6>
+                                <ul>
+                                    <li>Protein: 30g</li>
+                                    <li>Carbs: 40g</li>
+                                    <li>Fats: 20g</li>
+                                </ul>
+                                <a href="#" class="btn btn-primary">Add this food</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Day's Intake -->
+        <div id="day's-intake" class="container bg-primary py-3">
+            <h1>My Calories</h1>
+            <div class="row">
+
+            </div>
+        </div>
+
+        <!-- Account Registration -->
+        <section id="account-registration" class="py-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12 col-md-8 col-lg-9">
+                        <h1 class="text-primary text-center pb-3">Account Registration</h1>
+
+                        <!-- Name -->
+                        <label for="name" class="form-label">Enter your name</label>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupSelect01">first: </label>
+                            <input id="user-first" type="text" class="form-control" placeholder="ex. John">
+                            <label class="input-group-text" for="inputGroupSelect01">last: </label>
+                            <input id="user-last" type="text" class="form-control" placeholder="ex. Smith">
+                        </div>
+
+                        <!-- Build --->
+                        <label for="build" class="form-label">Enter your height, weight and
+                            sex</label>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupSelect01">height: </label>
+                            <input id="user-height-ft" type="number" class="form-control" placeholder="feet">
+                            <label class="input-group-text" for="inputGroupSelect01">'</label>
+                            <input id="user-height-in" type="number" class="form-control" placeholder="inches">
+                            <label class="input-group-text" for="inputGroupSelect01">''</label>
+                            <label class="input-group-text" for="inputGroupSelect01">weight: </label>
+                            <input id="user-weight" type="number" class="form-control" placeholder="pounds">
+                            <label class="input-group-text" for="inputGroupSelect01">lbs</label>
+                            <label class="input-group-text" for="inputGroupSelect01">sex: </label>
+                            <select id="user-sex" class="form-select">
+                                <option selected>Choose...</option>
+                                <option value="1">Male</option>
+                                <option value="2">Female</option>
+                            </select>
+                        </div>
+
+                        <!-- Email -->
+                        <label for="email" class="form-label">Enter your email</label>
+                        <div class="input-group mb-3">
+                            <input id="user-email" type="text" class="form-control"
+                                placeholder="ex. johnsmith@gmail.com">
+                        </div>
+
+                        <!-- Username -->
+                        <label for="username" class="form-label">Create a username</label>
+                        <div class="input-group mb-3">
+                            <input id="user-username" type="text" class="form-control" placeholder="ex. johnsmith">
+                        </div>
+
+                        <!-- Password -->
+                        <label for="password" class="form-label">Create a password</label>
+                        <div class="input-group mb-3">
+                            <input id="user-password" type="text" class="form-control" placeholder="ex. password123">
+                        </div>
+                    </div>
+                    <div class="d-none d-md-block col-0 col-md-4 col-lg-3">
+                        <h2>
+                            Congratulations on taking the first step towards
+                            a better you!
+                        </h2>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+                            class="bi bi-heart-pulse-fill text-danger justify-content-between" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M1.475 9C2.702 10.84 4.779 12.871 8 15c3.221-2.129 5.298-4.16 6.525-6H12a.5.5 0 0 1-.464-.314l-1.457-3.642-1.598 5.593a.5.5 0 0 1-.945.049L5.889 6.568l-1.473 2.21A.5.5 0 0 1 4 9H1.475ZM.879 8C-2.426 1.68 4.41-2 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C11.59-2 18.426 1.68 15.12 8h-2.783l-1.874-4.686a.5.5 0 0 0-.945.049L7.921 8.956 6.464 5.314a.5.5 0 0 0-.88-.091L3.732 8H.88Z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Account Registration -->
+        <section id="account-registration" class="py-5">
+            <div class="container">
+                <div class="d-md-flex align-items-center-justify-content-between">
+                    <div class="row">
+                        <div class="col-12 col-md-6">first</div>
+                        <div class="col-12 col-md-6">last</div>
+                        <div class="col-6 col-4">feet</div>
+                        <div class="col-6 col-4">inches</div>
+                        <div class="col-6 col-4">weight</div>
+                        <div class="col-6 col-4">sex</div>
+                        <div class="col-12">email</div>
+                        <div class="col-12">username</div>
+                        <div class="col-12">password</div>
+                    </div>
+                    <div class="d-none d-md-block"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Log In -->
+        <section id="log-in" class="py-5">
+            <div class="container">
+                <h2 class="text-primary text-center pb-3">Log In</h2>
+
+                <div class="input-group mb-3">
+                    <input id="user-username" type="text" class="form-control" placeholder="username">
+                </div>
+
+                <div class="input-group mb-3">
+                    <input id="user-password" type="text" class="form-control" placeholder="password">
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer" class="footer mt-auto py-3 bg-dark text-light">
+        <div class="container">
+            <span class="text-muted">Place sticky footer content here.</span>
+        </div>
+    </footer>
+
+    <!-- Bootstrap js framework-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

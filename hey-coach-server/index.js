@@ -8,13 +8,13 @@ server.use(cors());
 server.use(express.json());
 
 server.get("/", (req, res) => {
-  res.send("Welcome to hey-coach-server!");
+  res.send("Welcome to the hey-coach-server!");
 });
 
 /**
  *
  *
- * Users Table API
+ * Users API
  *
  *
  */
@@ -35,6 +35,7 @@ server.post("/users", async (req, res) => {
 server.get("/users", async (req, res) => {
   try {
     const users = await pool.query("SELECT * FROM users");
+    console.log(users);
     console.log(users.rows);
     res.json(users.rows);
   } catch (error) {
@@ -42,9 +43,9 @@ server.get("/users", async (req, res) => {
   }
 });
 // read a user's name
-server.get("/users/getName", async (req, res) => {
+server.get("/users/:email", async (req, res) => {
   try {
-    const { email } = req.body;
+    const { email } = req.params;
     const name = await pool.query("SELECT name FROM users WHERE email = $1", [
       email,
     ]);
@@ -57,7 +58,7 @@ server.get("/users/getName", async (req, res) => {
 /**
  *
  *
- *  Activities Table API
+ *  Activities API
  *
  *
  */

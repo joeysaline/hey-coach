@@ -1,0 +1,18 @@
+export const graphicImages = [
+  { url: "/images/biking.svg" },
+  { url: "/images/horseback.svg" },
+  { url: "/images/indoor_biking.svg" },
+  { url: "/images/jogging.svg" },
+  { url: "/images/personal_training.svg" },
+  { url: "/images/pilates.svg" },
+  { url: "/images/running.svg" },
+  { url: "/images/skateboarding.svg" },
+  { url: "/images/walking.svg" },
+  { url: "/images/walking2.svg" },
+  { url: "/images/winter.svg" },
+  { url: "/images/working_out.svg" },
+  { url: "/images/working_out2.svg" },
+  { url: "/images/yoga.svg" },
+  { url: "https://hey-coach-bucket.s3.us-east-2.amazonaws.com/sports-2262083_640.jpg" },
+  { url: "https://hey-coach-bucket.s3.us-east-2.amazonaws.com/swimming.jpg" },
+];

@@ -1,7 +1,7 @@
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Progress from "../components/Progress";
-import CalorieCounter from "../components/Counter";
+import CalorieCounter from "../components/CreateFood";
 import { LineChart, data } from "../components/DashChart";
 import { Container, Typography } from "@mui/material";
 import QuickAddActivity from "../components/QuickAddActivity";

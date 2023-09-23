@@ -1,5 +1,6 @@
-import React, { useContext, useState, useEffect } from "react";
-import { useAuth } from "../user-auth/contexts/AuthContexts";
+import React, { useContext, useState } from "react";
+import { v4 } from "uuid";
+// import { useAuth } from "../user-auth/contexts/AuthContexts";
 
 const ActivityContext = React.createContext();
 
@@ -8,62 +9,78 @@ export function useActivity() {
 }
 
 export function ActivityProvider({ children }) {
-  const { currentUser } = useAuth();
-  const data = [
-    {
-      id: 0,
-      title: "Weight Lifting",
-      exertionRate: 127,
-      imageURL:
-        "https://hey-coach-bucket.s3.us-east-2.amazonaws.com/sports-2262083_640.jpg",
-    },
-    {
-      id: 1,
-      title: "Running",
-      exertionRate: 205,
-      imageURL:
-        "https://hey-coach-bucket.s3.us-east-2.amazonaws.com/sports-2262083_640.jpg",
-    },
-    {
-      id: 2,
-      title: "Swimming",
-      exertionRate: 184,
-      imageURL:
-        "https://hey-coach-bucket.s3.us-east-2.amazonaws.com/swimming.jpg",
-    },
-  ];
+  // const { currentUser } = useAuth();
+  // const data = [
+  //   {
+  //     id: 0,
+  //     title: "Weight Lifting",
+  //     rate: 127,
+  //     imageURL:
+  //       "https://hey-coach-bucket.s3.us-east-2.amazonaws.com/sports-2262083_640.jpg",
+  //   },
+  //   {
+  //     id: 1,
+  //     title: "Running",
+  //     rate: 205,
+  //     imageURL:
+  //       "https://hey-coach-bucket.s3.us-east-2.amazonaws.com/sports-2262083_640.jpg",
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Swimming",
+  //     rate: 184,
+  //     imageURL:
+  //       "https://hey-coach-bucket.s3.us-east-2.amazonaws.com/swimming.jpg",
+  //   },
+  // ];
   const [activity, setActivity] = useState({
     id: "",
     title: "",
-    exertionRate: "",
-    imageURL:
-      "https://hey-coach-bucket.s3.us-east-2.amazonaws.com/sports-2262083_640.jpg",
+    rate: "",
+    imageURL: "",
   });
-  const [activities, setActivities] = useState([]);
-  const [activityTracker, setActivityTracker] = useState({
+  const [savedActivities, setSavedActivities] = useState([]);
+  const [trackedActivities, setTrackedActivities] = useState([]);
+  const [favoriteActivity, setFavoriteActivity] = useState({
     id: "",
-    date: "",
-    activities: []
+    title: "",
+    rate: "",
+    imageURL: "",
   });
 
-  function createActivity(activity) {
-    setActivities([...activities, activity]);
+  function saveActivity(activity) {
+    setSavedActivities([...savedActivities, activity]);
   }
-
-  function removeActivity(id) {
-    setActivities(activities.filter((activity) => activity.id !== id));
+  function unsaveActivity(id) {
+    setSavedActivities(
+      savedActivities.filter((activity) => activity.id !== id)
+    );
   }
-
-  function addToActivityTracker(activity) {
-    
+  function trackActivity(activity) {
+    setTrackedActivities([...trackedActivities, { ...activity, id: v4(), total: activity.rate * activity.hours }]);
+  }
+  function untrackActivity(id) {
+    setTrackedActivities(
+      trackedActivities.filter((activity) => activity.id !== id)
+    );
+  }
+  function favorite(activity) {
+    setFavoriteActivity(activity);
   }
   const value = {
     activity,
     setActivity,
-    activities,
-    setActivities,
-    createActivity,
-    removeActivity,
+    savedActivities,
+    setSavedActivities,
+    trackedActivities,
+    setTrackedActivities,
+    favoriteActivity,
+    setFavoriteActivity,
+    favorite,
+    saveActivity,
+    unsaveActivity,
+    trackActivity,
+    untrackActivity,
   };
   //   setLoading(false);
   //   const [loading, setLoading] = useState(true);

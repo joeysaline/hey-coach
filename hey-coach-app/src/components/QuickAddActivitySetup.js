@@ -4,29 +4,31 @@ import { Button, TextField, Select, MenuItem } from "@mui/material";
 import { v4 as uuidv4 } from "uuid";
 import { graphicImages } from "../Graphics";
 
-export default function CreateActivity() {
-  const { activity, setActivity, saveActivity } = useActivity();
+export default function QuickAddActivitySetup() {
+    const { activity, setActivity, saveActivity, favorite } = useActivity();
 
-  function handleActivityTitleChange(e) {
-    setActivity({ ...activity, title: e.target.value });
-  }
-
-  function handleActivityRateChange(e) {
-    setActivity({ ...activity, rate: e.target.value });
-  }
-
-  const handleImageChange = (e) => {
-    setActivity({ ...activity, imageURL: e.target.value });
-  };
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    if (activity.title.trim()) {
-      saveActivity({ ...activity, id: uuidv4() });
-      setActivity({ ...activity, title: "", rate: "", imageURL: "" });
+    function handleActivityTitleChange(e) {
+      setActivity({ ...activity, title: e.target.value });
     }
-  }
-
+  
+    function handleActivityRateChange(e) {
+      setActivity({ ...activity, rate: e.target.value });
+    }
+  
+    const handleImageChange = (e) => {
+      setActivity({ ...activity, imageURL: e.target.value });
+    };
+  
+    function handleSubmit(e) {
+      e.preventDefault();
+      if (activity.title.trim()) {
+        setActivity({ ...activity, id: uuidv4() });
+        saveActivity(activity);
+        favorite(activity);
+        setActivity({ ...activity, id: "", title: "", rate: "", imageURL: "" });
+      }
+    }
+  
   return (
     <form onSubmit={handleSubmit}>
       <TextField
@@ -58,7 +60,7 @@ export default function CreateActivity() {
         ))}
       </Select>
       <Button variant="contained" type="submit" color="primary">
-        Add
+        Add to saved activities and set as favorite
       </Button>
     </form>
   );

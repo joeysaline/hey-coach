@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -29,9 +29,6 @@ import Home from "./pages/Home";
 import ActivityTracker from "./pages/ActivityTracker";
 import NutritionTracker from "./pages/NutritionTracker";
 import Profile from "./pages/Profile";
-
-import { useAuth } from "./user-auth/contexts/AuthContexts";
-import axios from "axios";
 
 const drawerWidth = 240;
 
@@ -86,26 +83,11 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-async function addUserIfNoneExists(userEmail) {
-  //   console.log("email: " + userEmail);
-  axios.request({
-    method: "POST",
-    url: `http://localhost:3000/api/addUser`,
-    data: {
-      email: userEmail,
-    },
-  });
-}
 
 export default function Main() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [page, setPage] = React.useState(<Home />);
-
-  const { currentUser } = useAuth();
-  useEffect(() => {
-    addUserIfNoneExists(currentUser.email);
-  }, [currentUser.email]);
 
   const handleDrawerOpen = () => {
     setOpen(true);

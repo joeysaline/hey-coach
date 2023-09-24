@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useActivity } from "../contexts/ActivityContexts";
-import { Alert, Button, Slider } from "@mui/material";
+import { Alert, Button, Slider, Typography } from "@mui/material";
 import QuickAddActivitySetup from "./QuickAddActivitySetup";
 export default function QuickAddActivity() {
-  const { favoriteActivity, trackActivity } = useActivity();
+  const { favoriteActivity, trackActivity, trackedActivities } = useActivity();
   const [creatorMode, setCreatorMode] = useState(false);
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
@@ -16,7 +16,7 @@ export default function QuickAddActivity() {
   function handleClick(e) {
     e.preventDefault();
     try {
-      trackActivity({...favoriteActivity, hours: hours});
+      trackActivity({ ...favoriteActivity, hours: hours });
       setMessage("Activity successfully tracked!");
       setHours(1);
     } catch (error) {
@@ -47,9 +47,18 @@ export default function QuickAddActivity() {
     return `${value} hours`;
   }
 
+  useEffect(() => {
+    setTimeout(() => {
+      setMessage("");
+      setError("");
+    }, 3000);
+  }, [trackedActivities]);
+
   return (
     <>
       <h3>Quick add activity</h3>
+      {error && <Alert severity="error">{error}</Alert>}
+      {message && <Alert severity="success">{message}</Alert>}
       {favoriteActivity.title === "" ? (
         <div>
           Set up quick add to instantly track calories from your favorite
@@ -59,11 +68,9 @@ export default function QuickAddActivity() {
         </div>
       ) : (
         <div>
-          {error && <Alert severity="error">{error}</Alert>}
-          {message && <Alert severity="success">{message}</Alert>}
-          <img src={favoriteActivity.imageURL} width={250} alt="activity" />
-          <label>{favoriteActivity.title}</label>
-          <label>: {favoriteActivity.rate} calories per hour</label>
+          <img src={favoriteActivity.imageURL} width={250} height={250} alt="activity" />
+          <Typography variant="h5">{favoriteActivity.title}</Typography>
+          <Typography variant="p">{favoriteActivity.rate} calories per hour</Typography>
           <Slider
             aria-label="Select time length"
             defaultValue={1}
@@ -76,7 +83,9 @@ export default function QuickAddActivity() {
             getAriaValueText={valuetext}
             valueLabelDisplay="auto"
           />
-          <Button onClick={handleClick}>Track</Button>
+          <Button variant="contained" onClick={handleClick}>
+            Track
+          </Button>
         </div>
       )}
     </>

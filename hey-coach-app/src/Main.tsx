@@ -51,6 +51,7 @@ const MainContent = styled("main", {
     }),
     marginLeft: 0,
   }),
+  paddingBottom: "6",
 }));
 
 interface AppBarProps extends MuiAppBarProps {
@@ -82,7 +83,6 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
   justifyContent: "flex-end",
 }));
-
 
 export default function Main() {
   const theme = useTheme();
@@ -230,7 +230,7 @@ export default function Main() {
       </Drawer>
       <MainContent open={open}>
         <DrawerHeader />
-        {page}
+        <Box sx={{ pb: "0" }}>{page}</Box>
       </MainContent>
     </Box>
   );

@@ -67,6 +67,7 @@ export function ActivityProvider({ children }) {
   function favorite(activity) {
     setFavoriteActivity(activity);
   }
+
   const value = {
     activity,
     setActivity,

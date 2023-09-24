@@ -10,7 +10,7 @@ export default function TrackedActivityList() {
       {trackedActivities.length === 0
         ? "You haven't added any activities yet!"
         : trackedActivities.map((activity) => (
-            <TrackedActivity key={activity.id} props={activity} />
+            <TrackedActivity key={activity.id} props={activity}/>
           ))}
     </>
   );

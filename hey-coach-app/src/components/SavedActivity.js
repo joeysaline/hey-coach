@@ -1,6 +1,18 @@
 import React, { useState } from "react";
-import { Alert, Button, Slider } from "@mui/material";
+import {
+  Alert,
+  Avatar,
+  Button,
+  ClickAwayListener,
+  Container,
+  Divider,
+  ListItemButton,
+  Slider,
+  Typography,
+} from "@mui/material";
 import { useActivity } from "../contexts/ActivityContexts";
+import EventButton from "./EventButton";
+import { ListItem, ListItemAvatar, ListItemText } from "@mui/material";
 
 export default function SavedActivity({ props }) {
   const { trackActivity, unsaveActivity, favorite } = useActivity();
@@ -8,6 +20,7 @@ export default function SavedActivity({ props }) {
   const [message, setMessage] = useState("");
   const [needHours, setNeedHours] = useState(false);
   const [hours, setHours] = useState(1);
+  const [open, setOpen] = useState(false);
 
   const marks = [
     {
@@ -36,17 +49,18 @@ export default function SavedActivity({ props }) {
     e.preventDefault();
     try {
       trackActivity({ ...props, hours: hours });
-      setMessage("Activity successfully tracked!");
-      setHours(1);
-      setNeedHours(false);
+      setMessage(`${props.title} successfully tracked!`);
     } catch (error) {
       setError(error);
     }
+    resetMessages();
+    setHours(1);
+    setNeedHours(false);
   }
 
   function SelectHours() {
-    setMessage('');
-    setError('');
+    setMessage("");
+    setError("");
     return (
       <>
         <Slider
@@ -61,29 +75,73 @@ export default function SavedActivity({ props }) {
           getAriaValueText={valuetext}
           valueLabelDisplay="auto"
         />
+
         <Button onClick={handleClick}>Confirm</Button>
         <Button onClick={() => setNeedHours(false)}>Cancel</Button>
       </>
     );
   }
 
-  return (
-    <>
-      <div>
-        {error && <Alert severity="error">{error}</Alert>}
-        {message && <Alert severity="success">{message}</Alert>}
-        <img src={props.imageURL} width={100} alt="activity" />
-        <label>{props.title}</label>
+  function resetMessages() {
+    setTimeout(() => {
+      setMessage("");
+      setError("");
+    }, 3000);
+  }
+  function Options() {
+    return (
+      <>
         {needHours ? (
           <SelectHours />
         ) : (
-          <>
+          <div>
             <Button onClick={() => setNeedHours(true)}>Track</Button>
-            <Button onClick={() => favorite(props)}>Favorite</Button>
+            <EventButton
+              title="Favorite"
+              click={favorite}
+              clickValue={props}
+              feedback={`${props.title} marked as favorite.`}
+            />
             <Button onClick={() => unsaveActivity(props.id)}>Delete</Button>
-          </>
+          </div>
         )}
-      </div>
+      </>
+    );
+  }
+  return (
+    <>
+      <ClickAwayListener onClickAway={() => setOpen(false)}>
+        <div>
+          <Container>
+            {error && <Alert severity="error">{error}</Alert>}
+            {message && <Alert severity="success">{message}</Alert>}
+          </Container>
+          <ListItem alignItems="flex-start">
+            <ListItemButton onClick={() => setOpen((prev) => !prev)}>
+              <ListItemAvatar>
+                <Avatar alt={props.title} src={props.imageURL} />
+              </ListItemAvatar>
+              <ListItemText
+                primary={props.title}
+                secondary={
+                  <>
+                    <Typography
+                      sx={{ display: "inline" }}
+                      component="span"
+                      variant="body2"
+                      color="text.primary"
+                    >
+                      {props.rate} calories per hour
+                    </Typography>
+                  </>
+                }
+              />
+            </ListItemButton>
+          </ListItem>
+          <Container>{open && <Options />}</Container>
+        </div>
+      </ClickAwayListener>
+      <Divider variant="inset" component="li" />
     </>
   );
 }

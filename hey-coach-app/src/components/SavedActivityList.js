@@ -1,28 +1,35 @@
 import React from "react";
 import { useActivity } from "../contexts/ActivityContexts";
 import SavedActivity from "./SavedActivity";
-import { List } from "@mui/material";
-import CreateActivity from "./CreateActivity";
+import { DialogContent, List } from "@mui/material";
 
 export default function SavedActivities() {
   const { savedActivities } = useActivity();
 
   return (
-    <>
-      {savedActivities.length === 0 ? (
-        <>
-        <div>
-          You haven't saved any activities yet.
-        </div>
-        <CreateActivity />
-        </>
-      ) : (
-        <List sx={{maxHeight: '45vh', overflow: 'auto'}}>
-          {savedActivities.map((activity) => (
-            <SavedActivity key={activity.id} props={activity} />
-          ))}
-        </List>
-      )}
-    </>
+    <DialogContent sx={{maxHeight: "50vh", paddingX: "0"}}>
+      <List
+        sx={{
+          width: "100%",
+          maxWidth: 360,
+          bgcolor: "background.paper",
+        }}
+      >
+        {savedActivities.map((activity) => (
+          <SavedActivity key={activity.id} props={activity} />
+        ))}
+      </List>
+    </DialogContent>
+    // <>
+    //   {savedActivities.length === 0 ? (
+    //     <p>You haven't saved any activities yet.</p>
+    //   ) : (
+    //     <List sx={{ maxHeight: "50vh", overflow: "auto" }}>
+    //       {savedActivities.map((activity) => (
+    //         <SavedActivity key={activity.id} props={activity} />
+    //       ))}
+    //     </List>
+    //   )}
+    // </>
   );
 }

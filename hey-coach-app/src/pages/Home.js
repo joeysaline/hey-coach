@@ -3,19 +3,49 @@ import Paper from "@mui/material/Paper";
 import Progress from "../components/Progress";
 import CalorieCounter from "../components/CreateFood";
 import { LineChart, data } from "../components/DashChart";
-import { Container, Typography } from "@mui/material";
+import { Avatar, Container, Typography } from "@mui/material";
 import QuickAddActivity from "../components/QuickAddActivity";
 import { useAuth } from "../user-auth/contexts/AuthContexts";
 
 export default function Home() {
   const { currentUser } = useAuth();
 
+  function stringToColor(string) {
+    let hash = 0;
+    let i;
+  
+    /* eslint-disable no-bitwise */
+    for (i = 0; i < string.length; i += 1) {
+      hash = string.charCodeAt(i) + ((hash << 5) - hash);
+    }
+  
+    let color = '#';
+  
+    for (i = 0; i < 3; i += 1) {
+      const value = (hash >> (i * 8)) & 0xff;
+      color += `00${value.toString(16)}`.slice(-2);
+    }
+    /* eslint-enable no-bitwise */
+  
+    return color;
+  }
+  
+  function stringAvatar(name) {
+    return {
+      sx: {
+        bgcolor: stringToColor(name),
+      },
+      children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
+    };
+  }
+
   return (
     <Container>
       <Grid container spacing={3}>
         <Grid item xs={12} md={4}>
           <Container>
-            <Typography variant="h2">Welcome, {currentUser.email}</Typography>
+            <Typography variant="h2">Welcome,</Typography>
+            <Avatar {...stringAvatar(`${currentUser.email} ${currentUser.password}`)} />
           </Container>
         </Grid>
         <Grid item xs={12} md={8}>

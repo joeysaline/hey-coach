@@ -83,9 +83,8 @@ export default function CreateActivity() {
             </ListItem>
             <ListItem>
               <TextField
-                fullWidth
                 variant="standard"
-                type="text"
+                type="number"
                 label="calories per hour"
                 value={activity.rate}
                 onChange={handleActivityRateChange}

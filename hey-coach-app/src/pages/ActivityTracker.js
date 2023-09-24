@@ -4,6 +4,7 @@ import TrackedActivityList from "../components/TrackedActivityList";
 import SavedActivityList from "../components/SavedActivityList";
 import FavoriteActivity from "../components/FavoriteActivity";
 import CreateActivity from "../components/CreateActivity";
+import EnhancedTable from "../components/TrackedActivityTable";
 
 export default function ActivityTracker() {
   return (
@@ -18,8 +19,9 @@ export default function ActivityTracker() {
           <Paper elevation={10} sx={{ p: 3 }}>
             <Container>
               <Typography variant="h3">Today's Activity</Typography>
-              <TrackedActivityList />
             </Container>
+            {/* <TrackedActivityList /> */}
+            <EnhancedTable />
           </Paper>
         </Grid>
         <Grid item xs={12} md={4}>
@@ -32,6 +34,7 @@ export default function ActivityTracker() {
           <Paper elevation={10} sx={{ p: 3 }}>
             <Container>
               <Typography variant="h4">Saved Activities</Typography>
+              <Typography variant="p">This is where you will find your predefined activities.</Typography>
             </Container>
             <CreateActivity />
             <SavedActivityList />

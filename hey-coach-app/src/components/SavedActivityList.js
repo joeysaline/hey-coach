@@ -20,16 +20,5 @@ export default function SavedActivities() {
         ))}
       </List>
     </DialogContent>
-    // <>
-    //   {savedActivities.length === 0 ? (
-    //     <p>You haven't saved any activities yet.</p>
-    //   ) : (
-    //     <List sx={{ maxHeight: "50vh", overflow: "auto" }}>
-    //       {savedActivities.map((activity) => (
-    //         <SavedActivity key={activity.id} props={activity} />
-    //       ))}
-    //     </List>
-    //   )}
-    // </>
   );
 }
